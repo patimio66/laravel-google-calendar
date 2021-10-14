@@ -17,7 +17,7 @@ class EventTest extends TestCase
     {
         parent::setUp();
 
-        $this->event = new Event;
+        $this->event = new Event();
     }
 
     /** @test */
@@ -67,7 +67,7 @@ class EventTest extends TestCase
     {
         $now = Carbon::now();
 
-        $event = new Event;
+        $event = new Event();
 
         $this->assertEmpty($event->getSortDate());
 
@@ -105,7 +105,7 @@ class EventTest extends TestCase
     {
         $this->event->source = [
             'title' => 'Test Source Title',
-            'url' => 'http://testsource.url',
+            'url'   => 'http://testsource.url',
         ];
 
         $this->assertEquals('Test Source Title', $this->event->googleEvent->getSource()->title);
@@ -117,11 +117,11 @@ class EventTest extends TestCase
     {
         $attendees = [
             [
-                'name' => 'Spatie',
-                'email' => 'spatie@example.com',
+                'name'    => 'Spatie',
+                'email'   => 'spatie@example.com',
                 'comment' => "I'm ready for this meeting",
             ],
-            [ 'email' => 'devgummibeer@example.com' ],
+            ['email' => 'devgummibeer@example.com'],
         ];
 
         $this->event->addAttendee($attendees[0]);
@@ -138,7 +138,7 @@ class EventTest extends TestCase
     /** @test */
     public function it_can_determine_if_an_event_is_an_all_day_event()
     {
-        $event = new Event;
+        $event = new Event();
 
         $event->startDate = Carbon::now();
 
