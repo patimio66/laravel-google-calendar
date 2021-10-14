@@ -4,8 +4,8 @@ namespace Spatie\GoogleCalendar;
 
 use Google_Client;
 use Google_Service_Calendar;
-use Spatie\GoogleCalendar\Exceptions\InvalidConfiguration;
 use Illuminate\Support\Facades\Auth;
+use Spatie\GoogleCalendar\Exceptions\InvalidConfiguration;
 
 class GoogleCalendarFactory
 {
@@ -39,7 +39,7 @@ class GoogleCalendarFactory
 
     protected static function createServiceAccountClient(array $authProfile): Google_Client
     {
-        $client = new Google_Client;
+        $client = new Google_Client();
 
         $client->setScopes([
             Google_Service_Calendar::CALENDAR,
@@ -56,7 +56,7 @@ class GoogleCalendarFactory
 
     protected static function createOAuthClient(array $authProfile): Google_Client
     {
-        $client = new Google_Client;
+        $client = new Google_Client();
 
         $client->setScopes([
             Google_Service_Calendar::CALENDAR,
@@ -71,7 +71,7 @@ class GoogleCalendarFactory
 
     protected static function createOAuthClientFromAuth(array $authProfile): Google_Client
     {
-        $client = new Google_Client;
+        $client = new Google_Client();
 
         $client->setScopes([
             Google_Service_Calendar::CALENDAR,
