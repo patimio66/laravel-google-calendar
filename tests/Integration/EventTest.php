@@ -1,16 +1,16 @@
 <?php
 
-namespace Spatie\GoogleCalendar\Tests\Integration;
+namespace Patimio66\GoogleCalendar\Tests\Integration;
 
 use Carbon\Carbon;
 use DateTime;
 use Mockery as m;
-use Spatie\GoogleCalendar\Event;
-use Spatie\GoogleCalendar\Tests\TestCase;
+use Patimio66\GoogleCalendar\Event;
+use Patimio66\GoogleCalendar\Tests\TestCase;
 
 class EventTest extends TestCase
 {
-    /** @var \Spatie\GoogleCalendar\Event */
+    /** @var \Patimio66\GoogleCalendar\Event */
     protected $event;
 
     public function setUp(): void
@@ -117,7 +117,7 @@ class EventTest extends TestCase
     {
         $attendees = [
             [
-                'name' => 'Spatie',
+                'name' => 'Patimio66',
                 'email' => 'spatie@example.com',
                 'comment' => "I'm ready for this meeting",
             ],

@@ -1,5 +1,5 @@
 {
-    "name": "spatie/laravel-google-calendar",
+    "name": "patimio66/laravel-google-calendar",
     "description": "Manage events on a Google Calendar",
     "keywords": [
         "spatie",
@@ -9,13 +9,19 @@
         "schedule",
         "laravel-google-calendar"
     ],
-    "homepage": "https://github.com/spatie/laravel-google-calendar",
+    "homepage": "https://github.com/patimio66/laravel-google-calendar",
     "license": "MIT",
     "authors": [
         {
             "name": "Freek Van der Herten",
             "email": "freek@spatie.be",
             "homepage": "https://spatie.be",
+            "role": "Developer"
+        },
+        {
+            "name": "Patryk Imioła",
+            "email": "kontakt@quiksite.pl",
+            "homepage": "https://quiksite.pl",
             "role": "Developer"
         }
     ],
@@ -32,12 +38,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\GoogleCalendar\\": "src"
+            "Patimio66\\GoogleCalendar\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\GoogleCalendar\\Tests\\": "tests"
+            "Patimio66\\GoogleCalendar\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -46,10 +52,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\GoogleCalendar\\GoogleCalendarServiceProvider"
+                "Patimio66\\GoogleCalendar\\GoogleCalendarServiceProvider"
             ],
             "aliases": {
-                "GoogleCalendar": "Spatie\\GoogleCalendar\\GoogleCalendarFacade"
+                "GoogleCalendar": "Patimio66\\GoogleCalendar\\GoogleCalendarFacade"
             }
         }
     },

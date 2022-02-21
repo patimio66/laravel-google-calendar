@@ -9,7 +9,7 @@
 This package makes working with a Google Calendar a breeze. Once it has been set up you can do these things:
 
 ```php
-use Spatie\GoogleCalendar\Event;
+use Patimio66\GoogleCalendar\Event;
 
 //create a new event
 $event = new Event;
@@ -48,7 +48,7 @@ Event::create([
 $event->delete();
 ```
 
-Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
+Patimio66 is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
 
 ## Support us
 
@@ -69,7 +69,7 @@ composer require spatie/laravel-google-calendar
 You must publish the configuration with this command:
 
 ```bash
-php artisan vendor:publish --provider="Spatie\GoogleCalendar\GoogleCalendarServiceProvider"
+php artisan vendor:publish --provider="Patimio66\GoogleCalendar\GoogleCalendarServiceProvider"
 ```
 
 This will publish a file called `google-calendar.php` in your config-directory with these contents:
@@ -203,13 +203,13 @@ In file `config/google-calendar.php`, you can customize the **guard** and which 
 If you are upgrading from an older version of this package, you will need to force a publish of the configuration:
 
 ```bash
-php artisan vendor:publish --provider="Spatie\GoogleCalendar\GoogleCalendarServiceProvider" --force
+php artisan vendor:publish --provider="Patimio66\GoogleCalendar\GoogleCalendarServiceProvider" --force
 ```
 ## Usage
 
 ### Getting events
 
-You can fetch all events by simply calling `Event::get();` this will return all events of the coming year. An event comes in the form of a `Spatie\GoogleCalendar\Event` object.
+You can fetch all events by simply calling `Event::get();` this will return all events of the coming year. An event comes in the form of a `Patimio66\GoogleCalendar\Event` object.
 
 The full signature of the function is:
 
@@ -234,7 +234,7 @@ $events[0]->endDateTime;
 
 ### Creating an event
 
-You can just new up a `Spatie\GoogleCalendar\Event`-object
+You can just new up a `Patimio66\GoogleCalendar\Event`-object
 
 ```php
 $event = new Event;
@@ -281,7 +281,7 @@ Event::quickCreate('Appointment at Somewhere on April 25 10am-10:25am');
 
 ### Getting a single event
 
-Google assigns a unique id to every single event. You can get this id by getting events using the `get` method and getting the `id` property on a `Spatie\GoogleCalendar\Event`-object:
+Google assigns a unique id to every single event. You can get this id by getting events using the `get` method and getting the `id` property on a `Patimio66\GoogleCalendar\Event`-object:
 ```php
 // get the id of the first upcoming event in the calendar.
 $eventId = Event::get()->first()->id;

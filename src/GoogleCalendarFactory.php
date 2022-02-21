@@ -1,10 +1,10 @@
 <?php
 
-namespace Spatie\GoogleCalendar;
+namespace Patimio66\GoogleCalendar;
 
 use Google_Client;
 use Google_Service_Calendar;
-use Spatie\GoogleCalendar\Exceptions\InvalidConfiguration;
+use Patimio66\GoogleCalendar\Exceptions\InvalidConfiguration;
 use Illuminate\Support\Facades\Auth;
 
 class GoogleCalendarFactory

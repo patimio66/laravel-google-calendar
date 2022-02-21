@@ -10,7 +10,7 @@
          processIsolation="true"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="Spatie Test Suite">
+        <testsuite name="Patimio66 Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

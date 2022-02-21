@@ -1,11 +1,11 @@
 <?php
 
-namespace Spatie\GoogleCalendar\Tests\Unit;
+namespace Patimio66\GoogleCalendar\Tests\Unit;
 
 use Google_Service_Calendar;
 use Mockery;
 use PHPUnit\Framework\TestCase;
-use Spatie\GoogleCalendar\GoogleCalendar;
+use Patimio66\GoogleCalendar\GoogleCalendar;
 
 class GoogleCalendarTest extends TestCase
 {
@@ -15,7 +15,7 @@ class GoogleCalendarTest extends TestCase
     /** @var string */
     protected $calendarId;
 
-    /** @var \Spatie\GoogleCalendar\GoogleCalendar */
+    /** @var \Patimio66\GoogleCalendar\GoogleCalendar */
     protected $googleCalendar;
 
     public function setUp(): void
