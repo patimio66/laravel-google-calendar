@@ -106,9 +106,9 @@ class Event
             ->values();
     }
 
-    public static function find($eventId, string $calendarId = null): self
+    public static function find($eventId, string $calendarId = null, null|int $userId): self
     {
-        $googleCalendar = static::getGoogleCalendar($calendarId);
+        $googleCalendar = static::getGoogleCalendar($calendarId, $userId);
 
         $googleEvent = $googleCalendar->getEvent($eventId);
 
@@ -172,7 +172,7 @@ class Event
         return is_null($this->googleEvent['start']['dateTime']);
     }
 
-    public function save(string $method = null, $optParams = []): self
+    public function save(string $method = null, $optParams = [], null|int $userId): self
     {
         $method = $method ?? ($this->exists() ? 'updateEvent' : 'insertEvent');
 
@@ -183,7 +183,7 @@ class Event
         return static::createFromGoogleCalendarEvent($googleEvent, $googleCalendar->getCalendarId());
     }
 
-    public function quickSave(string $text): self
+    public function quickSave(string $text, null|int $userId): self
     {
         $googleCalendar = $this->getGoogleCalendar($this->calendarId);
 
@@ -192,7 +192,7 @@ class Event
         return static::createFromGoogleCalendarEvent($googleEvent, $googleCalendar->getCalendarId());
     }
 
-    public function update(array $attributes, $optParams = []): self
+    public function update(array $attributes, null|int $userId, $optParams = []): self
     {
         foreach ($attributes as $name => $value) {
             $this->$name = $value;
@@ -201,7 +201,7 @@ class Event
         return $this->save('updateEvent', $optParams);
     }
 
-    public function delete(string $eventId = null, $optParams = [])
+    public function delete(string $eventId = null, null|int $userId, $optParams = [])
     {
         $this->getGoogleCalendar($this->calendarId)->deleteEvent($eventId ?? $this->id, $optParams);
     }
