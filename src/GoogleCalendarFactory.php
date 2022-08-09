@@ -6,21 +6,22 @@ use Google_Client;
 use Google_Service_Calendar;
 use Patimio66\GoogleCalendar\Exceptions\InvalidConfiguration;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class GoogleCalendarFactory
 {
-    public static function createForCalendarId(string $calendarId): GoogleCalendar
+    public static function createForCalendarId(string $calendarId, null|int $userId): GoogleCalendar
     {
         $config = config('google-calendar');
 
-        $client = self::createAuthenticatedGoogleClient($config);
+        $client = self::createAuthenticatedGoogleClient($config, $userId);
 
         $service = new Google_Service_Calendar($client);
 
         return self::createCalendarClient($service, $calendarId);
     }
 
-    public static function createAuthenticatedGoogleClient(array $config): Google_Client
+    public static function createAuthenticatedGoogleClient(array $config, null|int $userId): Google_Client
     {
         $authProfile = $config['default_auth_profile'];
 
@@ -32,6 +33,9 @@ class GoogleCalendarFactory
         }
         if ($authProfile === 'user_oauth') {
             return self::createOAuthClientFromAuth($config['auth_profiles']['user_oauth']);
+        }
+        if ($authProfile === 'userid_oauth') {
+            return self::createOAuthClientFromUserId($userId);
         }
 
         throw InvalidConfiguration::invalidAuthenticationProfile($authProfile);
@@ -80,6 +84,23 @@ class GoogleCalendarFactory
         $client->setAuthConfig($authProfile['credentials_json']);
 
         $user_token = Auth::guard($authProfile['guard'])->user()->{$authProfile['column']};
+
+        $client->setAccessToken($user_token);
+
+        return $client;
+    }
+
+    protected static function createOAuthClientFromUserId(null|int $userId): Google_Client
+    {
+        $client = new Google_Client;
+
+        $client->setScopes([
+            Google_Service_Calendar::CALENDAR,
+        ]);
+
+        $client->setAuthConfig($authProfile['credentials_json']);
+
+        $user_token = User::findOrFail($userId)->{$authProfile['column']};
 
         $client->setAccessToken($user_token);
 

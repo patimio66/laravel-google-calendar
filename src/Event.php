@@ -52,11 +52,11 @@ class Event
      *
      * @return mixed
      */
-    public static function create(array $properties, string $calendarId = null, $optParams = [])
+    public static function create(array $properties, string $calendarId = null, null|int $userId, $optParams = [])
     {
         $event = new static;
 
-        $event->calendarId = static::getGoogleCalendar($calendarId)->getCalendarId();
+        $event->calendarId = static::getGoogleCalendar($calendarId, $userId)->getCalendarId();
 
         foreach ($properties as $name => $value) {
             $event->$name = $value;
@@ -235,11 +235,11 @@ class Event
         return $this->calendarId;
     }
 
-    protected static function getGoogleCalendar(string $calendarId = null): GoogleCalendar
+    protected static function getGoogleCalendar(string $calendarId = null, null|int $userId): GoogleCalendar
     {
         $calendarId = $calendarId ?? config('google-calendar.calendar_id');
 
-        return GoogleCalendarFactory::createForCalendarId($calendarId);
+        return GoogleCalendarFactory::createForCalendarId($calendarId, $userId);
     }
 
     protected function setDateProperty(string $name, CarbonInterface $date)
