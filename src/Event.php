@@ -62,7 +62,7 @@ class Event
             $event->$name = $value;
         }
 
-        return $event->save('insertEvent', $optParams);
+        return $event->save('insertEvent', $optParams, $userId);
     }
 
     public static function quickCreate(string $text)
