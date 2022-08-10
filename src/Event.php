@@ -74,9 +74,9 @@ class Event
         return $event->quickSave($text);
     }
 
-    public static function get(CarbonInterface $startDateTime = null, CarbonInterface $endDateTime = null, array $queryParameters = [], string $calendarId = null): Collection
+    public static function get(CarbonInterface $startDateTime = null, CarbonInterface $endDateTime = null, array $queryParameters = [], string $calendarId = null, null|int $userId): Collection
     {
-        $googleCalendar = static::getGoogleCalendar($calendarId);
+        $googleCalendar = static::getGoogleCalendar($calendarId, $userId);
 
         $googleEvents = $googleCalendar->listEvents($startDateTime, $endDateTime, $queryParameters);
 
@@ -176,7 +176,7 @@ class Event
     {
         $method = $method ?? ($this->exists() ? 'updateEvent' : 'insertEvent');
 
-        $googleCalendar = $this->getGoogleCalendar($this->calendarId);
+        $googleCalendar = $this->getGoogleCalendar($this->calendarId, $userId);
 
         $googleEvent = $googleCalendar->$method($this, $optParams);
 
@@ -185,7 +185,7 @@ class Event
 
     public function quickSave(string $text, null|int $userId): self
     {
-        $googleCalendar = $this->getGoogleCalendar($this->calendarId);
+        $googleCalendar = $this->getGoogleCalendar($this->calendarId, $userId);
 
         $googleEvent = $googleCalendar->insertEventFromText($text);
 
@@ -198,12 +198,12 @@ class Event
             $this->$name = $value;
         }
 
-        return $this->save('updateEvent', $optParams);
+        return $this->save('updateEvent', $optParams, $userId);
     }
 
     public function delete(string $eventId = null, null|int $userId, $optParams = [])
     {
-        $this->getGoogleCalendar($this->calendarId)->deleteEvent($eventId ?? $this->id, $optParams);
+        $this->getGoogleCalendar($this->calendarId, $userId)->deleteEvent($eventId ?? $this->id, $optParams);
     }
 
     public function addAttendee(array $attendee)
