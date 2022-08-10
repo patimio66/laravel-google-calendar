@@ -35,7 +35,7 @@ class GoogleCalendarFactory
             return self::createOAuthClientFromAuth($config['auth_profiles']['user_oauth']);
         }
         if ($authProfile === 'userid_oauth') {
-            return self::createOAuthClientFromUserId($config, $userId);
+            return self::createOAuthClientFromUserId($config['auth_profiles']['userid_oauth'], $userId);
         }
 
         throw InvalidConfiguration::invalidAuthenticationProfile($authProfile);
