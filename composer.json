@@ -28,7 +28,7 @@
     "require": {
         "php": "^8.0",
         "google/apiclient": "^2.2",
-        "illuminate/support": "^9.0",
+        "laravel/framework": "^9.0|^10.0",
         "nesbot/carbon": "^2.0"
     },
     "require-dev": {
